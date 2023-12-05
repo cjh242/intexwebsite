@@ -63,7 +63,7 @@ app.get("/register", (req, res) => {
     res.render('register.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
-app.post('/register', checkAuthenticated, async (req, res) => {
+app.post('/register', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
     

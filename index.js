@@ -69,25 +69,33 @@ app.get("/register", checkAuthenticated, (req, res) => {
     });
 
 app.post('/register', async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    
-        // Create a new user instance and save it to the database
-        const newUser = await User.create({
-            firstName: req.body.fname,
-            lastName: req.body.lname,
-            username: req.body.username,
-            email: req.body.email,
-            password: hashedPassword,
-        });
-    
-        console.log('New user created:', newUser);
-    
-        res.redirect('/register');
+    if(req.body.password === req.body.cpassword) {
+        try {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        
+            // Create a new user instance and save it to the database
+            const newUser = await User.create({
+                firstName: req.body.fname,
+                lastName: req.body.lname,
+                username: req.body.username,
+                email: req.body.email,
+                password: hashedPassword,
+            });
+        
+            console.log('New user created:', newUser);
+        
+            req.flash('success', 'User registered successfully!');
+            res.redirect('/register');
         } catch (error) {
-        console.error(error);
-        res.redirect('/register');
+            console.error(error);
+            req.flash('error', 'An error occurred during registration.');
+            res.redirect('/register');
         }
+    }
+    else {
+        req.flash('error', 'Passwords do not match. User not registered. Try Again');
+        res.redirect('/register');
+    }
 });
 //EDIT USER PAGE STUFF
 app.get("/edit", checkAuthenticated, (req, res) => { 
@@ -95,32 +103,38 @@ app.get("/edit", checkAuthenticated, (req, res) => {
     });
 
 app.post('/edit', checkAuthenticated, async (req, res) => {
-    try {
-        // Update user information in the database
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const [numRowsUpdated, updatedUser] = await User.update(
-        {
-            firstName: req.body.fname,
-            lastName: req.body.lname,
-            username: req.body.username,
-            email: req.body.email,
-            password: hashedPassword,
-            
-        },
-        {
-            where: { id: req.user.id },
-            returning: true, // Return the updated user
+    if(req.body.password === req.body.cpassword) {
+        try {
+            // Update user information in the database
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            const [numRowsUpdated, updatedUser] = await User.update(
+            {
+                firstName: req.body.fname,
+                lastName: req.body.lname,
+                username: req.body.username,
+                email: req.body.email,
+                password: hashedPassword,
+                
+            },
+            {
+                where: { id: req.user.id },
+                returning: true, // Return the updated user
+            }
+            );
+        
+            if (numRowsUpdated > 0) {
+            res.redirect('/');
+            } else {
+            res.redirect('/edit');
+            }
+        } catch (error) {
+            // Handle the error
+            console.error(error);
+            res.redirect('/edit');
         }
-        );
-    
-        if (numRowsUpdated > 0) {
-        res.redirect('/');
-        } else {
-        res.redirect('/edit');
-        }
-    } catch (error) {
-        // Handle the error
-        console.error(error);
+    }
+    else {
+        req.flash('error', 'Passwords do not match. User not edited. Try Again');
         res.redirect('/edit');
     }
     });

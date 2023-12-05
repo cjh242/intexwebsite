@@ -118,7 +118,11 @@
               </div>
               <div class="text-center"><button type="submit">Register</button></div>
             </form>
-
+            <% if (messages.error) { %>
+                <p style="color: red;"><%= messages.error %></p>
+            <% } else if (messages.success) { %>
+                <p style="color: green;"><%= messages.success %></p>
+            <% } %>
           </div><!-- End Contact Form -->
 
         </div>

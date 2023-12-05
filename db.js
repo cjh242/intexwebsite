@@ -9,6 +9,12 @@ const sequelize = new Sequelize(name, UserName, Password, {
     host: host,
     port: Port,
     dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false, // Use only if using a self-signed certificate or if not using a certificate
+        },
+      },
   });
 
 // Test the database connection

@@ -49,6 +49,11 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureFlash: true
     }));
 
+//LOGOUT PAGE STUFF
+app.get("/logout", (req, res) => { 
+    res.render('logout.ejs', { isAuthenticated: req.isAuthenticated() });
+    });
+
 app.post('/logout', (req, res) => {
     req.logout((err) => {
         if (err) {
@@ -59,7 +64,7 @@ app.post('/logout', (req, res) => {
     });
 
 //REGISTER PAGE STUFF
-app.get("/register", (req, res) => { 
+app.get("/register", checkAuthenticated, (req, res) => { 
     res.render('register.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
@@ -84,6 +89,41 @@ app.post('/register', async (req, res) => {
         res.redirect('/register');
         }
 });
+//EDIT USER PAGE STUFF
+app.get("/edit", checkAuthenticated, (req, res) => { 
+    res.render('edit.ejs', { user: req.user, isAuthenticated: req.isAuthenticated() });
+    });
+
+app.post('/edit', checkAuthenticated, async (req, res) => {
+    try {
+        // Update user information in the database
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const [numRowsUpdated, updatedUser] = await User.update(
+        {
+            firstName: req.body.fname,
+            lastName: req.body.lname,
+            username: req.body.username,
+            email: req.body.email,
+            password: hashedPassword,
+            
+        },
+        {
+            where: { id: req.user.id },
+            returning: true, // Return the updated user
+        }
+        );
+    
+        if (numRowsUpdated > 0) {
+        res.redirect('/');
+        } else {
+        res.redirect('/edit');
+        }
+    } catch (error) {
+        // Handle the error
+        console.error(error);
+        res.redirect('/edit');
+    }
+    });
 
 //ADMIN PAGE STUFF
 app.get("/admin", checkAuthenticated, (req, res) => { 

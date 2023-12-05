@@ -1,7 +1,13 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const host = process.env.RDS_HOSTNAME || 'localhost';
+const UserName = process.env.RDS_USERNAME || 'postgres';
+const Password = process.env.RDS_PASSWORD || 'Rut27.6161.90-3';
+const name = process.env.RDS_DB_NAME || 'provo-city';
+const Port = process.env.RDS_PORT || 5432;
 
-const sequelize = new Sequelize('provo-city', 'postgres', 'Rut27.6161.90-3', {
-    host: 'localhost',
+const sequelize = new Sequelize(name, UserName, Password, {
+    host: host,
+    port: Port,
     dialect: 'postgres',
   });
 

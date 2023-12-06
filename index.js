@@ -103,7 +103,7 @@ app.post('/register', async (req, res) => {
 });
 //EDIT USER PAGE STUFF
 app.get("/edit", checkAuthenticated, (req, res) => { 
-    res.render('edit.ejs', { user: req.user, isAuthenticated: req.isAuthenticated() });
+    res.render('edit.ejs', { user: req.user, isAuthenticated: req.isAuthenticated()});
     });
 
 app.post('/edit', checkAuthenticated, async (req, res) => {
@@ -148,14 +148,34 @@ app.get("/admin", checkAuthenticated, (req, res) => {
     res.render('admin.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
-app.get("/adminedit", isAdmin, (req, res) => { 
-    res.render('adminedit.ejs', { isAuthenticated: req.isAuthenticated() });
+app.get("/adminedit", isAdmin, async (req, res) => { 
+    const allusers = await User.findAll();
+    res.render('adminedit.ejs', { isAuthenticated: req.isAuthenticated(), myusers: allusers });
     });
 
 app.get("/dashboard", (req, res) => { 
     res.render('dashboard.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
+app.post("/deleteUser/:id", async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+        const user = await User.findByPk(userId);
+
+        if (!user) {
+            req.flash('error', 'Error. User not deleted');
+            res.redirect('/adminedit');
+          }
+
+        await user.destroy();
+        req.flash('success', 'User deleted');
+        res.redirect('/adminedit');
+    } catch (error) {
+        req.flash('error', 'Error. User not deleted');
+        res.redirect('/adminedit');
+    }
+});
 //SURVEY PAGE STUFF
 app.get("/survey", (req, res) => { 
     res.render('survey.ejs', { isAuthenticated: req.isAuthenticated() });

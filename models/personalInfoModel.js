@@ -66,7 +66,8 @@ const PersonalInfo = sequelize.define('peoples', {
   }, {
     timestamps: {
         createdAt: 'Timestamp',
-    }
+        updatedAt: false, // Disable the updatedAt timestamp
+    },
   });
 
 module.exports = PersonalInfo;

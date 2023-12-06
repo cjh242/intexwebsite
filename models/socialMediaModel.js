@@ -18,8 +18,9 @@ const SocialMedia = sequelize.define('social_media_mental_health', {
        type: DataTypes.INTEGER,
     },
   }, {
-    timestamps: true,
-    createdAt: 'Timestamp',
+        timestamps: true,
+        createdAt: 'Timestamp',
+        updatedAt: false,
   });
 
 SocialMedia.belongsTo(PersonalInfo, {

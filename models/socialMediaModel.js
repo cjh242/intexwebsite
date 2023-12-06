@@ -20,11 +20,9 @@ const SocialMedia = sequelize.define('social_media_mental_health', {
   }, {
     timestamps: true,
     createdAt: 'Timestamp',
-    primaryKey: true, // Indicates that a primary key is defined
-  // Define the columns that make up the composite primary key
-  // Note: Adjust the column names and types according to your needs
+    primaryKey: true,
   key: {
-    fields: ['Age', 'Gender', 'OrganizationID', 'PlatformID', 'Timestamp'],
+    fields: ['Age', 'Gender', 'OrganizationID', 'PlatformID', 'Timestamp', 'EntryID'],
   },
   });
 

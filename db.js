@@ -26,7 +26,7 @@ sequelize.authenticate()
     console.error('Unable to connect to the database:', error);
   });
 
-sequelize.sync({ force: true }) // Set force to true to drop and recreate tables on every sync
+sequelize.sync({ force: false }) // Set force to true to drop and recreate tables on every sync
   .then(() => {
     console.log('Database and tables synced successfully.');
   })

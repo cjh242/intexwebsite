@@ -20,10 +20,6 @@ const SocialMedia = sequelize.define('social_media_mental_health', {
   }, {
     timestamps: true,
     createdAt: 'Timestamp',
-    primaryKey: true,
-  key: {
-    fields: ['Age', 'Gender', 'OrganizationID', 'PlatformID', 'Timestamp', 'EntryID'],
-  },
   });
 
 SocialMedia.belongsTo(PersonalInfo, {

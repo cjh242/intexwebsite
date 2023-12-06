@@ -9,6 +9,10 @@ const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const User = require('./models/userModel.js');
+const SocialMedia = require('./models/socialMediaModel.js');
+const PersonalInfo = require('./models/personalInfoModel.js');
+const Platform = require('./models/platformModel.js');
+const Organization = require('./models/organizationModel.js');
 const sequelize = require('./db');
 var stylesheets = '';
 const baseDir = __dirname;
@@ -148,9 +152,56 @@ app.get("/dashboard", (req, res) => {
     res.render('dashboard.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
+//SURVEY PAGE STUFF
 app.get("/survey", (req, res) => { 
     res.render('survey.ejs', { isAuthenticated: req.isAuthenticated() });
     });
+
+app.post('/survey', async (req, res) => {
+    try {
+        const personalInfo = await PersonalInfo.create({
+            Age: req.body.age,
+            Gender: req.body.gender,
+            RelationshipStatus: req.body.relationship,
+            OccupationStatus: req.body.occupation,
+            Location: 'Provo',
+            UseSocialMedia: req.body.yesno,
+            AvgTimeSpent: req.body.timeDuration,
+            OftenSpent: req.body.purpose,
+            Restless: req.body.distracted,
+            Distracted: req.body.distracted2,
+            Worries: req.body.worries,
+            Concentration: req.body.concentrate,
+            CompareSuccess: req.body.compare,
+            FeelAboutComparison: req.body.feel,
+            SeekValidation: req.body.validation,
+            Depressed: req.body.depressed,
+            InterestDailyActivites: req.body.interest,
+            Sleep: req.body.sleep,
+        });
+        const selectedPlatforms = req.body.socialMedia; // Assuming an array of selected platform IDs
+        const selectedOrganizations = req.body.affiliated; // Assuming an array of selected organization IDs
+
+        for (const platformId of selectedPlatforms) {
+            for (const organizationId of selectedOrganizations) {
+                const socialMedia = await SocialMedia.create({
+                    EntryID: personalInfo.EntryID,
+                    Age: req.body.age,
+                    Gender: req.body.gender,
+                    OrganizationID: organizationId,
+                    PlatformID: platformId,
+                });
+            }
+        }
+        req.flash('success', 'Survey response recorded!');
+        res.redirect('/');
+    } catch  (error) {
+        // Handle the error
+        req.flash('error', 'Survey not submitted. Please try again.');
+        console.error(error);
+        res.redirect('/survey');
+    }
+});
 
 
 function checkAuthenticated(req, res, next) {

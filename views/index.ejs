@@ -87,7 +87,11 @@
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="/survey" class="btn-get-started">Take Survey</a>
           </div>
-
+          <% if (messages.error) { %>
+            <p style="color: red;"><%= messages.error %></p>
+        <% } else if (messages.success) { %>
+            <p style="color: green;"><%= messages.success %></p>
+        <% } %>
         </div>
       </div>
     </div>

@@ -82,18 +82,10 @@
 
           <div class="col-lg-10" data-aos="fade-up" data-aos-delay="250">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
+            <form action="/survey" method="POST" role="form" class="php-email-form">
               <div class="form-group mt-3">
                 <label for="gender">Gender:</label>
-                <select id="gender" name="gender">
+                <select id="gender" name="gender" required>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
@@ -101,103 +93,138 @@
                 </select>
               </div>
               <div class="form-group mt-3">
+                <label for="age">Select your age:</label>
+                <select id="age" name="age" required>
+                <!-- Generating options from 1 to 100 using JavaScript -->
+                    <script>
+                        for (let i = 1; i <= 100; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+              </div>
+              <div class="form-group mt-3">
                 <label for="relationship">Current Relationship Status:</label>
-                <select id="relationship" name="relationship">
-                  <option value="single">Single</option>
-                  <option value="canada">In a relationship</option>
-                  <option value="uk">Married</option>
-                  <option value="uk">Divorced</option>
+                <select id="relationship" name="relationship" required>
+                  <option value="Single">Single</option>
+                  <option value="In a relationship">In a relationship</option>
+                  <option value="Married">Married</option>
+                  <option value="Divorced">Divorced</option>
                   <!-- Add more options as needed -->
                 </select>
               </div>
               <div class="form-group mt-3">
                 <label for="occupation">Occupation Status:</label>
-                <select id="occupation" name="occupation">
-                  <option value="usa">United States</option>
-                  <option value="canada">Canada</option>
-                  <option value="uk">United Kingdom</option>
+                <select id="occupation" name="occupation" required>
+                  <option value="University Student">University Student</option>
+                  <option value="High School Student">High School Student</option>
+                  <option value="Salaried Worker">Salaried Worker</option>
+                  <option value="Retired">Retired</option>
                   <!-- Add more options as needed -->
                 </select>
               </div>
               <div class="form-group mt-3">
-                <label for="occupation">Occupation Status:</label>
-                <select id="occupation" name="occupation">
-                  <option value="usa">United States</option>
-                  <option value="canada">Canada</option>
-                  <!-- Add more options as needed -->
-                </select>
-              </div>
-              <div class="form-group mt-3">
-                <label for="yes">Do you use social media:</label>
-                    <input type="radio" id="yes" name="yesno" value="yes"> Yes
+                <label for="socialMedia">What type of organizations are you affiliated with? </label>
+                <label>
+                    <input type="checkbox" name="affiliated" value="1"> University
                   </label>
+                
                   <label>
-                    <input type="radio" id="no" name="yesno" value="no"> No
+                    <input type="checkbox" name="affiliated" value="2"> High School
+                  </label>
+                
+                  <label>
+                    <input type="checkbox" name="affiliated" value="4"> Company
+                  </label>
+                
+                  <label>
+                    <input type="checkbox" name="affiliated" value="5"> Government
+                  </label>
+                
+                  <label>
+                    <input type="checkbox" name="affiliated" value="3"> Private
+                  </label>
+                
+                  <label>
+                    <input type="checkbox" name="affiliated" value="6"> None
                   </label>
               </div>
+              <div class="form-group mt-3">
+            <label for="yesno">Do you use social media?: </label>
+              <label>
+                <input type="radio" name="yesno" value="Yes" required> Yes
+            </label>
+            <label>
+                <input type="radio" name="yesno" value="No" required> No
+            </label>
+            </div>
               <div class="form-group mt-3">
                 <label for="socialMedia">What Socail Media platforms do you use?</label>
                 <label>
-                    <input type="checkbox" name="socialMedia" value="Discord"> Discord
+                    <input type="checkbox" name="socialMedia" value="5"> Discord
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="Facebook"> Facebook
+                    <input type="checkbox" name="socialMedia" value="1"> Facebook
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="Twitter"> Twitter
+                    <input type="checkbox" name="socialMedia" value="2"> Twitter
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="Instagram"> Instagram
+                    <input type="checkbox" name="socialMedia" value="3"> Instagram
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="Youtube"> Youtube
+                    <input type="checkbox" name="socialMedia" value="4"> Youtube
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="Reddit"> Reddit
+                    <input type="checkbox" name="socialMedia" value="6"> Reddit
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="Pinterest"> Pinterest
+                    <input type="checkbox" name="socialMedia" value="7"> Pinterest
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="TikTok"> TikTok
+                    <input type="checkbox" name="socialMedia" value="8"> TikTok
                   </label>
                 
                   <label>
-                    <input type="checkbox" name="socialMedia" value="Snapchat"> Snapchat
+                    <input type="checkbox" name="socialMedia" value="9"> Snapchat
+                  </label>
+
+                  <label>
+                    <input type="checkbox" name="socialMedia" value="10"> None
                   </label>
               </div>
               <div class="form-group mt-3">
 
                 <label for="timeDuration">How much time do you spend on social media?</label>
                 <label>
-                    <input type="radio" name="timeDuration" value="Less than an hour"> Less than an hour
+                    <input type="radio" name="timeDuration" value="Less than an hour" required> Less than an hour
                   </label>
                 
                   <label>
-                    <input type="radio" name="timeDuration" value="1-2 hours"> 1-2 hours
+                    <input type="radio" name="timeDuration" value="1-2 hours" required> 1-2 hours
                   </label>
                 
                   <label>
-                    <input type="radio" name="timeDuration" value="2-3 hours"> 2-3 hours
+                    <input type="radio" name="timeDuration" value="2-3 hours" required> 2-3 hours
                   </label>
                 
                   <label>
-                    <input type="radio" name="timeDuration" value="3-4 hours"> 3-4 hours
+                    <input type="radio" name="timeDuration" value="3-4 hours" required> 3-4 hours
                   </label>
                 
                   <label>
-                    <input type="radio" name="timeDuration" value="4-5 hours"> 4-5 hours
+                    <input type="radio" name="timeDuration" value="4-5 hours" required> 4-5 hours
                   </label>
                 
                   <label>
-                    <input type="radio" name="timeDuration" value="More than 5 hours"> More than 5 hours
+                    <input type="radio" name="timeDuration" value="More than 5 hours" required> More than 5 hours
                   </label>
               </div>
               <div class="form-group mt-3">
@@ -207,11 +234,11 @@
                         <label for="purpose">How often do you find yourself using social media without a specific purpose?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="purpose" id="purpose1" value="1"> 1 </label>
-                        <label><input type="radio" name="purpose" id="purpose2" value="2"> 2 </label>
-                        <label><input type="radio" name="purpose" id="purpose3" value="3"> 3 </label>
-                        <label><input type="radio" name="purpose" id="purpose4" value="4"> 4 </label>
-                        <label><input type="radio" name="purpose" id="purpose5" value="5"> 5 </label>
+                        <label><input type="radio" name="purpose" id="purpose1" value="1" required> 1 </label>
+                        <label><input type="radio" name="purpose" id="purpose2" value="2" required> 2 </label>
+                        <label><input type="radio" name="purpose" id="purpose3" value="3" required> 3 </label>
+                        <label><input type="radio" name="purpose" id="purpose4" value="4" required> 4 </label>
+                        <label><input type="radio" name="purpose" id="purpose5" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -219,11 +246,11 @@
                         <label for="distracted">How often do you get distracted by social media when you are busy doing something?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="distracted" value="1"> 1 </label>
-                        <label><input type="radio" name="distracted" value="2"> 2 </label>
-                        <label><input type="radio" name="distracted" value="3"> 3 </label>
-                        <label><input type="radio" name="distracted" value="4"> 4 </label>
-                        <label><input type="radio" name="distracted" value="5"> 5 </label>
+                        <label><input type="radio" name="distracted" value="1" required> 1 </label>
+                        <label><input type="radio" name="distracted" value="2" required> 2 </label>
+                        <label><input type="radio" name="distracted" value="3" required> 3 </label>
+                        <label><input type="radio" name="distracted" value="4" required> 4 </label>
+                        <label><input type="radio" name="distracted" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -231,11 +258,11 @@
                         <label for="restless">Do you feel restless if you haven't used social media in a while?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="restless" value="1"> 1 </label>
-                        <label><input type="radio" name="restless" value="2"> 2 </label>
-                        <label><input type="radio" name="restless" value="3"> 3 </label>
-                        <label><input type="radio" name="restless" value="4"> 4 </label>
-                        <label><input type="radio" name="restless" value="5"> 5 </label>
+                        <label><input type="radio" name="restless" value="1" required> 1 </label>
+                        <label><input type="radio" name="restless" value="2" required> 2 </label>
+                        <label><input type="radio" name="restless" value="3" required> 3 </label>
+                        <label><input type="radio" name="restless" value="4" required> 4 </label>
+                        <label><input type="radio" name="restless" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -243,11 +270,11 @@
                         <label for="distracted2">How easily distracted are you?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="distracted2" value="1"> 1 </label>
-                        <label><input type="radio" name="distracted2" value="2"> 2 </label>
-                        <label><input type="radio" name="distracted2" value="3"> 3 </label>
-                        <label><input type="radio" name="distracted2" value="4"> 4 </label>
-                        <label><input type="radio" name="distracted2" value="5"> 5 </label>
+                        <label><input type="radio" name="distracted2" value="1" required> 1 </label>
+                        <label><input type="radio" name="distracted2" value="2" required> 2 </label>
+                        <label><input type="radio" name="distracted2" value="3" required> 3 </label>
+                        <label><input type="radio" name="distracted2" value="4" required> 4 </label>
+                        <label><input type="radio" name="distracted2" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -255,11 +282,11 @@
                         <label for="worries">How much are you bothered by worries?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="worries" value="1"> 1 </label>
-                        <label><input type="radio" name="worries" value="2"> 2 </label>
-                        <label><input type="radio" name="worries" value="3"> 3 </label>
-                        <label><input type="radio" name="worries" value="4"> 4 </label>
-                        <label><input type="radio" name="worries" value="5"> 5 </label>
+                        <label><input type="radio" name="worries" value="1" required> 1 </label>
+                        <label><input type="radio" name="worries" value="2" required> 2 </label>
+                        <label><input type="radio" name="worries" value="3" required> 3 </label>
+                        <label><input type="radio" name="worries" value="4" required> 4 </label>
+                        <label><input type="radio" name="worries" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -267,11 +294,11 @@
                         <label for="concentrate">Do you find it difficult to concentrate on things?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="concentrate" value="1"> 1 </label>
-                        <label><input type="radio" name="concentrate" value="2"> 2 </label>
-                        <label><input type="radio" name="concentrate" value="3"> 3 </label>
-                        <label><input type="radio" name="concentrate" value="4"> 4 </label>
-                        <label><input type="radio" name="concentrate" value="5"> 5 </label>
+                        <label><input type="radio" name="concentrate" value="1" required> 1 </label>
+                        <label><input type="radio" name="concentrate" value="2" required> 2 </label>
+                        <label><input type="radio" name="concentrate" value="3" required> 3 </label>
+                        <label><input type="radio" name="concentrate" value="4" required> 4 </label>
+                        <label><input type="radio" name="concentrate" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -279,11 +306,11 @@
                         <label for="compare">How often do you compare yourself to other successful people through their use of social media?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="compare" value="1"> 1 </label>
-                        <label><input type="radio" name="compare" value="2"> 2 </label>
-                        <label><input type="radio" name="compare" value="3"> 3 </label>
-                        <label><input type="radio" name="compare" value="4"> 4 </label>
-                        <label><input type="radio" name="compare" value="5"> 5 </label>
+                        <label><input type="radio" name="compare" value="1" required> 1 </label>
+                        <label><input type="radio" name="compare" value="2" required> 2 </label>
+                        <label><input type="radio" name="compare" value="3" required> 3 </label>
+                        <label><input type="radio" name="compare" value="4" required> 4 </label>
+                        <label><input type="radio" name="compare" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -291,11 +318,11 @@
                         <label for="feel">Following the previous question, how do you feel about these comparisons, generally speaking?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="feel" value="1"> 1 </label>
-                        <label><input type="radio" name="feel" value="2"> 2 </label>
-                        <label><input type="radio" name="feel" value="3"> 3 </label>
-                        <label><input type="radio" name="feel" value="4"> 4 </label>
-                        <label><input type="radio" name="feel" value="5"> 5 </label>
+                        <label><input type="radio" name="feel" value="1" required> 1 </label>
+                        <label><input type="radio" name="feel" value="2" required> 2 </label>
+                        <label><input type="radio" name="feel" value="3" required> 3 </label>
+                        <label><input type="radio" name="feel" value="4" required> 4 </label>
+                        <label><input type="radio" name="feel" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -303,11 +330,11 @@
                         <label for="validation">How often do you look to seek validation from features on social media?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="validation" value="1"> 1 </label>
-                        <label><input type="radio" name="validation" value="2"> 2 </label>
-                        <label><input type="radio" name="validation" value="3"> 3 </label>
-                        <label><input type="radio" name="validation" value="4"> 4 </label>
-                        <label><input type="radio" name="validation" value="5"> 5 </label>
+                        <label><input type="radio" name="validation" value="1" required> 1 </label>
+                        <label><input type="radio" name="validation" value="2" required> 2 </label>
+                        <label><input type="radio" name="validation" value="3" required> 3 </label>
+                        <label><input type="radio" name="validation" value="4" required> 4 </label>
+                        <label><input type="radio" name="validation" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -315,11 +342,11 @@
                         <label for="depressed">How often do you feel depressed or down?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="depressed" value="1"> 1 </label>
-                        <label><input type="radio" name="depressed" value="2"> 2 </label>
-                        <label><input type="radio" name="depressed" value="3"> 3 </label>
-                        <label><input type="radio" name="depressed" value="4"> 4 </label>
-                        <label><input type="radio" name="depressed" value="5"> 5 </label>
+                        <label><input type="radio" name="depressed" value="1" required> 1 </label>
+                        <label><input type="radio" name="depressed" value="2" required> 2 </label>
+                        <label><input type="radio" name="depressed" value="3" required> 3 </label>
+                        <label><input type="radio" name="depressed" value="4" required> 4 </label>
+                        <label><input type="radio" name="depressed" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -327,11 +354,11 @@
                         <label for="interest">How frequently does your interest in daily activities fluctuate?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="interest" value="1"> 1 </label>
-                        <label><input type="radio" name="interest" value="2"> 2 </label>
-                        <label><input type="radio" name="interest" value="3"> 3 </label>
-                        <label><input type="radio" name="interest" value="4"> 4 </label>
-                        <label><input type="radio" name="interest" value="5"> 5 </label>
+                        <label><input type="radio" name="interest" value="1" required> 1 </label>
+                        <label><input type="radio" name="interest" value="2" required> 2 </label>
+                        <label><input type="radio" name="interest" value="3" required> 3 </label>
+                        <label><input type="radio" name="interest" value="4" required> 4 </label>
+                        <label><input type="radio" name="interest" value="5" required> 5 </label>
                       </td>
                     </tr>
                     <tr>
@@ -339,36 +366,21 @@
                         <label for="sleep">How often do you face issues regarding sleep?</label>
                       </td>
                       <td>
-                        <label><input type="radio" name="sleep" value="1"> 1 </label>
-                        <label><input type="radio" name="sleep" value="2"> 2 </label>
-                        <label><input type="radio" name="sleep" value="3"> 3 </label>
-                        <label><input type="radio" name="sleep" value="4"> 4 </label>
-                        <label><input type="radio" name="sleep" value="5"> 5 </label>
+                        <label><input type="radio" name="sleep" value="1" required> 1 </label>
+                        <label><input type="radio" name="sleep" value="2" required> 2 </label>
+                        <label><input type="radio" name="sleep" value="3" required> 3 </label>
+                        <label><input type="radio" name="sleep" value="4" required> 4 </label>
+                        <label><input type="radio" name="sleep" value="5" required> 5 </label>
                       </td>
                     </tr>
                   </table>
-
-              </div>
-              <div class="form-group mt-3">
-                
-              </div>
-              <div class="form-group mt-3">
-                
-              </div>
-              <div class="form-group mt-3">
-                
-              </div>
-              <div class="form-group mt-3">
-                
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit">Submit Response</button></div>
             </form>
-
+            <% if (messages.error) { %>
+                <p style="color: red;"><%= messages.error %></p>
+            <% } else if (messages.success) { %>
+                <p style="color: green;"><%= messages.success %></p>
+            <% } %>
           </div><!-- End Contact Form -->
 
         </div>

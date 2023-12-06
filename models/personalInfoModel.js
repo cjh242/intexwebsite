@@ -64,10 +64,9 @@ const PersonalInfo = sequelize.define('peoples', {
         type: DataTypes.INTEGER,
       },
   }, {
-    timestamps: {
+        timestamps: true,
         createdAt: 'Timestamp',
         updatedAt: false, // Disable the updatedAt timestamp
-    },
   });
 
 module.exports = PersonalInfo;

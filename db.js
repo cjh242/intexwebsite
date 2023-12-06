@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const host = process.env.RDS_HOSTNAME || 'localhost';
+const host = process.env.RDS_HOSTNAME || 'awseb-e-nb7cmcmwjc-stack-awsebrdsdatabase-bopcyuvmiakw.cgflce8swton.us-east-1.rds.amazonaws.com';
 const UserName = process.env.RDS_USERNAME || 'postgres';
-const Password = process.env.RDS_PASSWORD || 'Rut27.6161.90-3';
-const name = process.env.RDS_DB_NAME || 'provo-city';
+const Password = process.env.RDS_PASSWORD || 'Elliot24Conway23';
+const name = process.env.RDS_DB_NAME || 'ebdb';
 const Port = process.env.RDS_PORT || 5432;
 
 const sequelize = new Sequelize(name, UserName, Password, {

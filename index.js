@@ -148,6 +148,10 @@ app.get("/admin", checkAuthenticated, (req, res) => {
     res.render('admin.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
+app.get("/adminedit", isAdmin, (req, res) => { 
+    res.render('adminedit.ejs', { isAuthenticated: req.isAuthenticated() });
+    });
+
 app.get("/dashboard", (req, res) => { 
     res.render('dashboard.ejs', { isAuthenticated: req.isAuthenticated() });
     });
@@ -217,6 +221,14 @@ function checkNotAuthenticated(req, res, next) {
     }
     next()
 }
+
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user.username === 'admin') {
+      return next();
+    }
+    req.flash('error', 'You are not logged in as the admin user');
+    res.redirect('/login'); // Redirect unauthorized users
+  }
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

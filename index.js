@@ -93,7 +93,7 @@ app.post('/register', async (req, res) => {
             res.redirect('/register');
         } catch (error) {
             console.error(error);
-            req.flash('error', 'An error occurred during registration.');
+            req.flash('error', 'That Username or Email is already in use. Choose another or log in to your existing account.');
             res.redirect('/register');
         }
     }

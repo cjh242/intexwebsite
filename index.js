@@ -170,11 +170,11 @@ app.get("/results", checkAuthenticated, async (req, res) => {
 
 app.post('/search', (req, res) => {
     const searchText = req.body.searchText;
-    const searchUrl = "/" + searchText;
+    const searchUrl = "/singleresult" + searchText;
     res.redirect(searchUrl);
   });
 
-app.get("/:EntryID", checkAuthenticated, async (req, res) => {
+app.get("/singleresult:EntryID", checkAuthenticated, async (req, res) => {
     const entryID = req.params.EntryID;
     const records = await PersonalInfo.findAll({ where: { EntryID: entryID } });
     const socialmedias = await SocialMedia.findAll({ where: { EntryID: entryID } });
@@ -215,6 +215,7 @@ app.post("/deleteUser/:id", async (req, res) => {
         res.redirect('/adminedit');
     }
 });
+
 //SURVEY PAGE STUFF
 app.get("/survey", (req, res) => { 
     res.render('survey.ejs', { isAuthenticated: req.isAuthenticated() });
@@ -276,9 +277,9 @@ function checkAuthenticated(req, res, next) {
     
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return res.redirect('/')
+        return res.redirect('/');
     }
-    next()
+    next();
 }
 
 function isAdmin(req, res, next) {
@@ -287,7 +288,7 @@ function isAdmin(req, res, next) {
     }
     req.flash('error', 'You are not logged in as the admin user');
     res.redirect('/login'); // Redirect unauthorized users
-  }
+}
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

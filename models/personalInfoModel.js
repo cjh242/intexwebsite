@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db.js');
+const SocialMedia = require('./socialMediaModel.js');
 
 const PersonalInfo = sequelize.define('peoples', {
     EntryID: {
@@ -68,5 +69,7 @@ const PersonalInfo = sequelize.define('peoples', {
         createdAt: 'Timestamp',
         updatedAt: false, // Disable the updatedAt timestamp
   });
+
+//   PersonalInfo.hasMany(SocialMedia, { as: 'socialMedia', foreignKey: 'EntryID' });
 
 module.exports = PersonalInfo;

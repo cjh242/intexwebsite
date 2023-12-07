@@ -18,6 +18,7 @@ var stylesheets = '';
 const baseDir = __dirname;
 
 const initializePassport = require('./passport-config');
+const { or } = require('sequelize');
 initializePassport(
     passport,
     username => User.findOne({ where: { username } }),
@@ -144,9 +145,28 @@ app.post('/edit', checkAuthenticated, async (req, res) => {
     });
 
 //ADMIN PAGE STUFF
-app.get("/admin", checkAuthenticated, (req, res) => { 
-    res.render('admin.ejs', { isAuthenticated: req.isAuthenticated() });
+app.get("/results", checkAuthenticated, async (req, res) => { 
+    const records = await PersonalInfo.findAll();
+    const socialmedias = await SocialMedia.findAll();
+    const organizations = await Organization.findAll();
+    const platforms = await Platform.findAll();
+    res.render('admin.ejs', { isAuthenticated: req.isAuthenticated(), 
+        myrecords: records, 
+        mysocials: socialmedias, 
+        myorganizations: organizations, 
+        myplatforms: platforms });
     });
+
+app.get("/response/:EntryID", checkAuthenticated, async (req, res) => {
+    const entryID = req.params.EntryID;
+    const socialmedias = await SocialMedia.findAll({ where: { EntryID: entryID } });
+    const organizations = await Organization.findAll();
+    const platforms = await Platform.findAll();
+    res.render('oneresponse.ejs', { isAuthenticated: req.isAuthenticated(), 
+        mysocials: socialmedias, 
+        myorganizations: organizations, 
+        myplatforms: platforms });
+});
 
 app.get("/adminedit", isAdmin, async (req, res) => { 
     const allusers = await User.findAll();

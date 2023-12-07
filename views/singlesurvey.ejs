@@ -164,11 +164,6 @@
           <div class="col-lg-20" data-aos="fade-up" data-aos-delay="250">
 
             <div class="custom-table-container">
-                <form action="/search" method="post">
-                    <label for="searchText">Search:</label>
-                    <input type="text" id="searchText" name="searchText" required>
-                    <button type="submit">Search</button>
-                </form>
             <table class="custom-table">
                 <thead class="custom-header">
                   <tr>
@@ -241,48 +236,46 @@
                 </thead>
             </div>
                 <ul>
-<% myrecords.forEach(record => { %>
-    <% let corg = ''; %>
-    <% let csocial = []; %>
-    <tr>
-        <td style="word-wrap: normal"><%= record.EntryID %></td>
-        <td style="word-wrap: normal"><%= record.Age %></td>
-        <td style="word-wrap: normal"><%= record.Gender %></td>
-        <td style="word-wrap: normal"><%= record.RelationshipStatus %></td>
-        <td style="word-wrap: normal"><%= record.OccupationStatus %></td>
-        <td><% mysocials.forEach(socialmedia => {
-            if(socialmedia.EntryID === record.EntryID) {
-                myplatforms.forEach(platform => {
-                    if(platform.PlatformID === socialmedia.PlatformID){ %>
-                        <% if(!csocial.includes(platform.Platform)) {
-                            csocial.push(platform.Platform); %>
-                                <%= platform.Platform %>
-                        <% } %>
-                <% }});}}); %> </td>
-            <td><% mysocials.forEach(socialmedia => {
-                if(socialmedia.EntryID === record.EntryID) {
-                myorganizations.forEach(organization => {
-                    if(organization.OrganizationID === socialmedia.OrganizationID){ %>
-                        <% if(corg !== organization.Organization) {
-                            corg = organization.Organization; %>
-                        <%= organization.Organization %>
-                <% }}}) %>
-            <% }}); %></td>
-        <td style="word-wrap: normal"><%= record.OftenSpent %></td>
-        <td style="word-wrap: normal"><%= record.Restless %></td>
-        <td style="word-wrap: normal"><%= record.Distracted %></td>
-        <td style="word-wrap: normal"><%= record.Worries %></td>
-        <td style="word-wrap: normal"><%= record.Concentration %></td>
-        <td style="word-wrap: normal"><%= record.CompareSuccess %></td>
-        <td style="word-wrap: normal"><%= record.FeelAboutComparison %></td>
-        <td style="word-wrap: normal"><%= record.SeekValidation %></td>
-        <td style="word-wrap: normal"><%= record.Depressed %></td>
-        <td style="word-wrap: normal"><%= record.InterestDailyActivites %></td>
-        <td style="word-wrap: normal"><%= record.Sleep %></td>
-    </tr>
-<% }); %>
-
-  
+                <% myrecords.forEach(record => { %>
+                    <% let corg = ''; %>
+                    <% let csocial = []; %>
+                    <tr>
+                        <td style="word-wrap: normal"><%= record.EntryID %></td>
+                        <td style="word-wrap: normal"><%= record.Age %></td>
+                        <td style="word-wrap: normal"><%= record.Gender %></td>
+                        <td style="word-wrap: normal"><%= record.RelationshipStatus %></td>
+                        <td style="word-wrap: normal"><%= record.OccupationStatus %></td>
+                        <td><% mysocials.forEach(socialmedia => {
+                            if(socialmedia.EntryID === record.EntryID) {
+                                myplatforms.forEach(platform => {
+                                    if(platform.PlatformID === socialmedia.PlatformID){ %>
+                                        <% if(!csocial.includes(platform.Platform)) {
+                                            csocial.push(platform.Platform); %>
+                                                <%= platform.Platform %>
+                                        <% } %>
+                                <% }});}}); %> </td>
+                            <td><% mysocials.forEach(socialmedia => {
+                                if(socialmedia.EntryID === record.EntryID) {
+                                myorganizations.forEach(organization => {
+                                    if(organization.OrganizationID === socialmedia.OrganizationID){ %>
+                                        <% if(corg !== organization.Organization) {
+                                            corg = organization.Organization; %>
+                                        <%= organization.Organization %>
+                                <% }}}) %>
+                            <% }}); %></td>
+                        <td style="word-wrap: normal"><%= record.OftenSpent %></td>
+                        <td style="word-wrap: normal"><%= record.Restless %></td>
+                        <td style="word-wrap: normal"><%= record.Distracted %></td>
+                        <td style="word-wrap: normal"><%= record.Worries %></td>
+                        <td style="word-wrap: normal"><%= record.Concentration %></td>
+                        <td style="word-wrap: normal"><%= record.CompareSuccess %></td>
+                        <td style="word-wrap: normal"><%= record.FeelAboutComparison %></td>
+                        <td style="word-wrap: normal"><%= record.SeekValidation %></td>
+                        <td style="word-wrap: normal"><%= record.Depressed %></td>
+                        <td style="word-wrap: normal"><%= record.InterestDailyActivites %></td>
+                        <td style="word-wrap: normal"><%= record.Sleep %></td>
+                    </tr>
+                <% }); %>
                 </tr>
                 </ul>
               <tbody>

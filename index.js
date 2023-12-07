@@ -157,16 +157,35 @@ app.get("/results", checkAuthenticated, async (req, res) => {
         myplatforms: platforms });
     });
 
-app.get("/response/:EntryID", checkAuthenticated, async (req, res) => {
+// app.get("/response/:EntryID", checkAuthenticated, async (req, res) => {
+//     const entryID = req.params.EntryID;
+//     const socialmedias = await SocialMedia.findAll({ where: { EntryID: entryID } });
+//     const organizations = await Organization.findAll();
+//     const platforms = await Platform.findAll();
+//     res.render('oneresponse.ejs', { isAuthenticated: req.isAuthenticated(), 
+//         mysocials: socialmedias, 
+//         myorganizations: organizations, 
+//         myplatforms: platforms });
+// });
+
+app.post('/search', (req, res) => {
+    const searchText = req.body.searchText;
+    const searchUrl = "/" + searchText;
+    res.redirect(searchUrl);
+  });
+
+app.get("/:EntryID", checkAuthenticated, async (req, res) => {
     const entryID = req.params.EntryID;
+    const records = await PersonalInfo.findAll({ where: { EntryID: entryID } });
     const socialmedias = await SocialMedia.findAll({ where: { EntryID: entryID } });
     const organizations = await Organization.findAll();
     const platforms = await Platform.findAll();
-    res.render('oneresponse.ejs', { isAuthenticated: req.isAuthenticated(), 
+    res.render('singlesurvey.ejs', { isAuthenticated: req.isAuthenticated(),
+        myrecords: records,
         mysocials: socialmedias, 
         myorganizations: organizations, 
         myplatforms: platforms });
-});
+    });
 
 app.get("/adminedit", isAdmin, async (req, res) => { 
     const allusers = await User.findAll();

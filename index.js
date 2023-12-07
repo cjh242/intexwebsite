@@ -212,7 +212,7 @@ app.post('/survey', async (req, res) => {
             UseSocialMedia: req.body.yesno,
             AvgTimeSpent: req.body.timeDuration,
             OftenSpent: req.body.purpose,
-            Restless: req.body.distracted,
+            Restless: req.body.restless,
             Distracted: req.body.distracted2,
             Worries: req.body.worries,
             Concentration: req.body.concentrate,

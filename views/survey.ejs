@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Provo - SMU MH</title>
+  <title>Provo Wellness, We Care!</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,7 +39,54 @@
 </head>
 
 <body class="page-contact">
+  <script>
+    function SocialMediaOrNo() 
+    {
+      let yesnoYes = document.getElementById("yesnoYes");
+      let socialMediaCheckboxes = document.querySelectorAll('.SM');
+      let noneCheckbox = document.querySelector('input[name="socialMedia"][value="10"]');
 
+      if (yesnoYes.checked) 
+      {
+        socialMediaCheckboxes.forEach(function(checkbox) {
+          checkbox.disabled = false;
+        });
+        noneCheckbox.checked = false;
+        noneCheckbox.disabled = true;
+      }
+      else 
+      {
+        socialMediaCheckboxes.forEach(function(checkbox) {
+          checkbox.disabled = true;
+          checkbox.checked = false;
+        });
+        noneCheckbox.checked = true;
+      }
+    } 
+
+    function OrganizationNone()
+    {
+      let OrgNone = document.getElementById("OrgNone");
+      let organizationCheckboxes = document.querySelectorAll('.Org');
+
+      if (OrgNone.checked) 
+      {
+        organizationCheckboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+          checkbox.disabled = true;
+        });
+        OrgNone.disabled = false;
+        OrgNone.checked = true;
+      }
+      else if (OrgNone.checked === false)
+      {
+        organizationCheckboxes.forEach(function(checkbox) {
+          //checkbox.checked = false;
+          checkbox.disabled = false;
+        });
+      }
+    }
+  </script>
  <!-- ======= Header ======= -->
  <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -74,38 +121,29 @@
 
   <main id="main">
 
-      <!-- ======= Breadcrumbs ======= -->
-      <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/mountains.jpg');">
-        <div class="container position-relative d-flex flex-column align-items-center">
-              <h2>Social Media and Mental Health Survey</h2>
-          <ol>              <li><a href="/">Home</a></li>
-            <li>Survey</li>
-          </ol>
-  
-        </div>        
-      </div><!-- End Breadcrumbs -->
-
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Survey Section ======= -->
     <section id="contact" class="contact">
-      <div class="container position-relative" data-aos="fade-up">
+      <div class="container position-relative"  data-aos="fade-up">
 
-        <div class="row gy-4 d-flex justify-content-center">
+        <div class = "jaden-survey" class="row gy-4 d-flex justify-content-center">
 
           <div class="col-lg-10" data-aos="fade-up" data-aos-delay="250">
 
-            <form action="/survey" method="POST" role="form" class="php-email-form">
-              <div class="form-group mt-3">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required>
+            <form action="/survey" method="POST" role="form" class="php-email-form" >
+              <div class="form-group mt-3" class="jaden-survey">
+                <label for="gender">Gender</label>
+                <br>
+                <select id="gender" name="gender" style="width: 800px" required>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                   <!-- Add more options as needed -->
                 </select>
               </div>
-              <div class="form-group mt-3">
-                <label for="age">Select your age:</label>
-                <select id="age" name="age" required>
+              <div class="form-group mt-3" class="jaden-survey">
+                <label for="age">Select your age</label>
+                <br>
+                <select id="age" name="age" style="width: 800px" required>
                 <!-- Generating options from 1 to 100 using JavaScript -->
                     <script>
                         for (let i = 1; i <= 100; i++) {
@@ -114,9 +152,10 @@
                     </script>
                 </select>
               </div>
-              <div class="form-group mt-3">
-                <label for="relationship">Current Relationship Status:</label>
-                <select id="relationship" name="relationship" required>
+              <div class="form-group mt-3" class="jaden-survey">
+                <label for="relationship">Current Relationship Status</label>
+                <br>
+                <select id="relationship" name="relationship" style="width: 800px" required>
                   <option value="Single">Single</option>
                   <option value="In a relationship">In a relationship</option>
                   <option value="Married">Married</option>
@@ -124,9 +163,10 @@
                   <!-- Add more options as needed -->
                 </select>
               </div>
-              <div class="form-group mt-3">
-                <label for="occupation">Occupation Status:</label>
-                <select id="occupation" name="occupation" required>
+              <div class="form-group mt-3" class="jaden-survey">
+                <label for="occupation">Occupation Status</label>
+                <br>
+                <select id="occupation" name="occupation" style="width: 800px" required>
                   <option value="University Student">University Student</option>
                   <option value="High School Student">High School Student</option>
                   <option value="Salaried Worker">Salaried Worker</option>
@@ -134,260 +174,400 @@
                   <!-- Add more options as needed -->
                 </select>
               </div>
-              <div class="form-group mt-3">
+              <div class="form-group mt-3" class="jaden-survey">
                 <label for="socialMedia">What type of organizations are you affiliated with? </label>
+                <br>
                 <label>
-                    <input type="checkbox" name="affiliated" value="1"> University
+                    <input class="Org" class = "Random" type="checkbox" name="affiliated" value="1"> University
                   </label>
-                
+                <br>
                   <label>
-                    <input type="checkbox" name="affiliated" value="2"> High School
+                    <input class="Org" type="checkbox" name="affiliated" value="2"> High School
                   </label>
-                
+                <br>
                   <label>
-                    <input type="checkbox" name="affiliated" value="4"> Company
+                    <input class="Org" type="checkbox" name="affiliated" value="4"> Company
                   </label>
-                
+                <br>
                   <label>
-                    <input type="checkbox" name="affiliated" value="5"> Government
+                    <input class="Org" type="checkbox" name="affiliated" value="5"> Government
                   </label>
-                
+                <br>
                   <label>
-                    <input type="checkbox" name="affiliated" value="3"> Private
+                    <input class="Org" type="checkbox" name="affiliated" value="3"> Private
                   </label>
-                
+                <br>
                   <label>
-                    <input type="checkbox" name="affiliated" value="6"> None
+                    <input class="Org" type="checkbox" name="affiliated" value="7"> Other
+                  </label>
+                <br>
+                  <label>
+                    <input class="Org" id="OrgNone" type="checkbox" name="affiliated" value="6" onclick="OrganizationNone()"> None
                   </label>
               </div>
-              <div class="form-group mt-3">
-            <label for="yesno">Do you use social media?: </label>
-              <label>
-                <input type="radio" name="yesno" value="Yes" required> Yes
-            </label>
-            <label>
-                <input type="radio" name="yesno" value="No" required> No
-            </label>
-            </div>
-              <div class="form-group mt-3">
-                <label for="socialMedia">What Socail Media platforms do you use?</label>
+              <div class="form-group mt-3" class="jaden-survey">
+                <label for="yesno">Do you use social media? </label>
+                <br>  
                 <label>
-                    <input type="checkbox" name="socialMedia" value="5"> Discord
+                    <input id="yesnoYes" type="radio" name="yesno" value="Yes" required onclick="SocialMediaOrNo()"> Yes
+                </label>
+               <br>
+                <label>
+                    <input id="yesnoNo" type="radio" name="yesno" value="No" required onclick="SocialMediaOrNo()"> No
+                </label>
+              </div> 
+              <div class="form-group mt-3" class="jaden-survey">
+                <label for="socialMedia" >What Social Media platforms do you use?</label>
+                <br>
+                <label>
+                    <input class="SM" type="checkbox" name="socialMedia" value="5"> Discord
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="1"> Facebook
+                    <input class="SM" type="checkbox" name="socialMedia" value="1"> Facebook
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="2"> Twitter
+                    <input class="SM" type="checkbox" name="socialMedia" value="2"> Twitter
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="3"> Instagram
+                    <input class="SM" type="checkbox" name="socialMedia" value="3"> Instagram
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="4"> Youtube
+                    <input class="SM" type="checkbox" name="socialMedia" value="4"> Youtube
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="6"> Reddit
+                    <input class="SM" type="checkbox" name="socialMedia" value="6"> Reddit
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="7"> Pinterest
+                    <input class="SM" type="checkbox" name="socialMedia" value="7"> Pinterest
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="8"> TikTok
+                    <input class="SM" type="checkbox" name="socialMedia" value="8"> TikTok
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="checkbox" name="socialMedia" value="9"> Snapchat
+                    <input class="SM" type="checkbox" name="socialMedia" value="9"> Snapchat
                   </label>
+                  <br>
+                  <label>
+                    <input class="SM" type="checkbox" name="socialMedia" value="10"> None
+                  </label>
+              </div>
 
-                  <label>
-                    <input type="checkbox" name="socialMedia" value="10"> None
-                  </label>
-              </div>
-              <div class="form-group mt-3">
+              <div class="form-group mt-3" class="jaden-survey">
 
                 <label for="timeDuration">How much time do you spend on social media?</label>
+                <br>
                 <label>
-                    <input type="radio" name="timeDuration" value="Less than an Hour" required> Less than an hour
+                    <input type="radio" name="timeDuration" value="Less than an hour" required> Less than an hour
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="radio" name="timeDuration" value="Between 1 and 2 hours" required> 1-2 hours
+                    <input type="radio" name="timeDuration" value="1-2 hours" required> 1-2 hours
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="radio" name="timeDuration" value="Between 2 and 3 hours" required> 2-3 hours
+                    <input type="radio" name="timeDuration" value="2-3 hours" required> 2-3 hours
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="radio" name="timeDuration" value="Between 3 and 4 hours" required> 3-4 hours
+                    <input type="radio" name="timeDuration" value="3-4 hours" required> 3-4 hours
                   </label>
-                
+                  <br>
                   <label>
-                    <input type="radio" name="timeDuration" value="Between 4 and 5 hours" required> 4-5 hours
+                    <input type="radio" name="timeDuration" value="4-5 hours" required> 4-5 hours
                   </label>
-                
+                  <br>
                   <label>
                     <input type="radio" name="timeDuration" value="More than 5 hours" required> More than 5 hours
                   </label>
               </div>
-              <div class="form-group mt-3">
-                <table>
-                    <tr>
-                      <td>
-                        <label for="purpose">How often do you find yourself using social media without a specific purpose?</label>
+              <div class="bottomSurvey" >
+                <table class ="jadenTable">
+                <tr>
+                    <th></th>
+                    <th class = "jadenHeader">Strongly Disagree</th>
+                    <th class = "jadenHeader">Disagree</th>
+                    <th class = "jadenHeader">Neutral</th>
+                    <th class = "jadenHeader">Agree</th>
+                    <th class = "jadenHeader">Strongly Agree</th>
+                </tr>
+                  <tr class = "even">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I often find myself using social media without a specific purpose
+                          </label>
                       </td>
-                      <td>
-                        <label><input type="radio" name="purpose" id="purpose1" value="1" required> 1 </label>
-                        <label><input type="radio" name="purpose" id="purpose2" value="2" required> 2 </label>
-                        <label><input type="radio" name="purpose" id="purpose3" value="3" required> 3 </label>
-                        <label><input type="radio" name="purpose" id="purpose4" value="4" required> 4 </label>
-                        <label><input type="radio" name="purpose" id="purpose5" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q1">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="distracted">How often do you get distracted by social media when you are busy doing something?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q1">
                       </td>
-                      <td>
-                        <label><input type="radio" name="distracted" value="1" required> 1 </label>
-                        <label><input type="radio" name="distracted" value="2" required> 2 </label>
-                        <label><input type="radio" name="distracted" value="3" required> 3 </label>
-                        <label><input type="radio" name="distracted" value="4" required> 4 </label>
-                        <label><input type="radio" name="distracted" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q1">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="restless">Do you feel restless if you haven't used social media in a while?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q1">
                       </td>
-                      <td>
-                        <label><input type="radio" name="restless" value="1" required> 1 </label>
-                        <label><input type="radio" name="restless" value="2" required> 2 </label>
-                        <label><input type="radio" name="restless" value="3" required> 3 </label>
-                        <label><input type="radio" name="restless" value="4" required> 4 </label>
-                        <label><input type="radio" name="restless" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q1">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="distracted2">How easily distracted are you?</label>
+                  </tr>
+                  <tr class = "odd">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I often get distracted by social media when I am busy doing something
+                          </label>
                       </td>
-                      <td>
-                        <label><input type="radio" name="distracted2" value="1" required> 1 </label>
-                        <label><input type="radio" name="distracted2" value="2" required> 2 </label>
-                        <label><input type="radio" name="distracted2" value="3" required> 3 </label>
-                        <label><input type="radio" name="distracted2" value="4" required> 4 </label>
-                        <label><input type="radio" name="distracted2" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q2">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="worries">How much are you bothered by worries?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q2">
                       </td>
-                      <td>
-                        <label><input type="radio" name="worries" value="1" required> 1 </label>
-                        <label><input type="radio" name="worries" value="2" required> 2 </label>
-                        <label><input type="radio" name="worries" value="3" required> 3 </label>
-                        <label><input type="radio" name="worries" value="4" required> 4 </label>
-                        <label><input type="radio" name="worries" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q2">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="concentrate">Do you find it difficult to concentrate on things?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q2">
                       </td>
-                      <td>
-                        <label><input type="radio" name="concentrate" value="1" required> 1 </label>
-                        <label><input type="radio" name="concentrate" value="2" required> 2 </label>
-                        <label><input type="radio" name="concentrate" value="3" required> 3 </label>
-                        <label><input type="radio" name="concentrate" value="4" required> 4 </label>
-                        <label><input type="radio" name="concentrate" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q2">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="compare">How often do you compare yourself to other successful people through their use of social media?</label>
+                  </tr>
+                  <tr class = "even">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I feel restless if I haven’t used social media in a while
+                          </label>
                       </td>
-                      <td>
-                        <label><input type="radio" name="compare" value="1" required> 1 </label>
-                        <label><input type="radio" name="compare" value="2" required> 2 </label>
-                        <label><input type="radio" name="compare" value="3" required> 3 </label>
-                        <label><input type="radio" name="compare" value="4" required> 4 </label>
-                        <label><input type="radio" name="compare" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q3">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="feel">Following the previous question, how do you feel about these comparisons, generally speaking?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q3">
                       </td>
-                      <td>
-                        <label><input type="radio" name="feel" value="1" required> 1 </label>
-                        <label><input type="radio" name="feel" value="2" required> 2 </label>
-                        <label><input type="radio" name="feel" value="3" required> 3 </label>
-                        <label><input type="radio" name="feel" value="4" required> 4 </label>
-                        <label><input type="radio" name="feel" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q3">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="validation">How often do you look to seek validation from features on social media?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q3">
                       </td>
-                      <td>
-                        <label><input type="radio" name="validation" value="1" required> 1 </label>
-                        <label><input type="radio" name="validation" value="2" required> 2 </label>
-                        <label><input type="radio" name="validation" value="3" required> 3 </label>
-                        <label><input type="radio" name="validation" value="4" required> 4 </label>
-                        <label><input type="radio" name="validation" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q3">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="depressed">How often do you feel depressed or down?</label>
+                  </tr>
+                  <tr class = "odd">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I am easily distracted
+                          </label>
                       </td>
-                      <td>
-                        <label><input type="radio" name="depressed" value="1" required> 1 </label>
-                        <label><input type="radio" name="depressed" value="2" required> 2 </label>
-                        <label><input type="radio" name="depressed" value="3" required> 3 </label>
-                        <label><input type="radio" name="depressed" value="4" required> 4 </label>
-                        <label><input type="radio" name="depressed" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q4">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="interest">How frequently does your interest in daily activities fluctuate?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q4">
                       </td>
-                      <td>
-                        <label><input type="radio" name="interest" value="1" required> 1 </label>
-                        <label><input type="radio" name="interest" value="2" required> 2 </label>
-                        <label><input type="radio" name="interest" value="3" required> 3 </label>
-                        <label><input type="radio" name="interest" value="4" required> 4 </label>
-                        <label><input type="radio" name="interest" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q4">
                       </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="sleep">How often do you face issues regarding sleep?</label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q4">
                       </td>
-                      <td>
-                        <label><input type="radio" name="sleep" value="1" required> 1 </label>
-                        <label><input type="radio" name="sleep" value="2" required> 2 </label>
-                        <label><input type="radio" name="sleep" value="3" required> 3 </label>
-                        <label><input type="radio" name="sleep" value="4" required> 4 </label>
-                        <label><input type="radio" name="sleep" value="5" required> 5 </label>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q4">
                       </td>
-                    </tr>
-                  </table>
-                  <br>
-                  <br>
-                  <br>
+                  </tr>
+                  <tr class = "even">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I am bothered by worries often
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q5">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q5">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q5">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q5">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q5">
+                      </td>
+                  </tr>
+                  <tr class="odd">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I find it difficult to concentrate on things
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q6">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q6">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q6">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q6">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q6">
+                      </td>
+                  </tr>
+                  <tr class="even">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I often compare myself to other successful people through their use of social media           
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q7">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q7">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q7">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q7">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q7">
+                      </td>
+                  </tr class="odd">
+                  <tr>
+                      <td class = "jadenQuestion">
+                          <label>
+                            Following the previous statement, I end up feeling negatively about myself with these comparisons
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q8">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q8">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q8">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q8">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q8">
+                      </td>
+                  </tr>
+                  <tr class="even">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I often seek validation through social media
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q9">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q9">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q9">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q9">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q9">
+                      </td>
+                  </tr>
+                  <tr class="odd">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I often feel depressed or down
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q10">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q10">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q10">
+                      </td>
+          
+                      <td class = "jadentd">
+                          <input type="radio" name = "q10">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q10">
+                      </td>
+                  </tr>
+                  <tr class="even">
+                      <td class = "jadenQuestion">
+                          <label>
+                            My interest in daily activities fluctuates frequently
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q11">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q11">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q11">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q11">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q11">
+                      </td>
+                  </tr>
+                  <tr class="odd">
+                      <td class = "jadenQuestion">
+                          <label>
+                            I often face issues regarding sleep
+                          </label>
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q12">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q12">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q12">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q12">
+                      </td>
+                      <td class = "jadentd">
+                          <input type="radio" name = "q12">
+                      </td>
+                  </tr>
+                </table>
+                <br>
+                <br>
+                <br>
+              </div>
               <div class="text-center"><button type="submit">Submit Response</button></div>
             </form>
             <% if (messages.error) { %>
@@ -412,29 +592,25 @@
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
             <a href="index.html" class="logo d-flex align-items-center">
-              <span>Provo City - SMU MH</span>
+              <span>Nova</span>
             </a>
-            <p>This is the Provo City page for Social Media Usage and Mental Health.
-              With the new SMU MH committee, we are committed to helping the Provo community
-              create healthier and happier lives. Through the community's help, we're able 
-              to gather more data and provide the best resources for the city of Provo. 
-            </p>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
             <div class="social-links d-flex  mt-3">
-              <a href="https://www.twitter.com/provocity" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="https://www.facebook.com/provocity/" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="https://www.instagram.com/provocity/" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="https://www.linkedin.com/company/provo-city/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-dash"></i> <a href="/">Home</a></li>
-              <li><i class="bi bi-dash"></i> <a href="/survey">Survey</a></li>
-              <li><i class="bi bi-dash"></i> <a href="/dashboard">Explore Data</a></li>
-              <!-- <li><i class="bi bi-dash"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-dash"></i> <a href="#">Privacy policy</a></li> -->
+              <li><i class="bi bi-dash"></i> <a href="#">Home</a></li>
+              <li><i class="bi bi-dash"></i> <a href="#">About us</a></li>
+              <li><i class="bi bi-dash"></i> <a href="#">Services</a></li>
+              <li><i class="bi bi-dash"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bi bi-dash"></i> <a href="#">Privacy policy</a></li>
             </ul>
           </div>
 
@@ -452,11 +628,11 @@
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
-              City Center Building <br>
-              445 W Center St Suite 310<br>
-              Provo, UT 84601 <br><br>
-              <strong>Phone:</strong> +1 (801) 652-6000<br>
-              <strong>Email:</strong> info@provocity.org<br>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
             </p>
 
           </div>
@@ -468,7 +644,7 @@
     <div class="footer-legal">
       <div class="container">
         <div class="copyright">
-          &copy; Copyright <strong><span>Provo City - SMU MH</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>Nova</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->

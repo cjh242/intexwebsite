@@ -2176,3 +2176,70 @@ section {
   font-size: 13px;
   color: var(--color-secondary);
 }
+
+.inlinejaden {
+  display: inline-block;
+}
+
+.jadenTable {
+  table-layout: fixed;
+}
+
+.jadentd {
+  white-space: normal;
+  word-wrap:break-word;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle; 
+  margin-right: 5px;
+}
+
+.jadenHeader {
+  white-space: normal;
+  word-wrap:break-word;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle; 
+  margin-right: 5px;
+}
+
+
+.jadenQuestion {
+  text-align: left;
+  width: 450px;
+  padding-left: 5%;
+}
+
+.even {
+  background-color: rgb(241, 239, 239);
+}
+
+/* input[type=radio] {
+  border: 0px;
+  width: 50%;
+  height: 1.5em;
+} */
+
+/* 
+.jaden-bottom-survey {
+  padding-left: 20%;
+
+} */
+/* .bottomSurvey {
+
+} */
+/* maybe use a table to organize things the way they should be  */
+
+/*  jaden-survey is the top part of it, excluding the table at the bottom */
+.jaden-survey {  
+  display: flex;
+  justify-content: center; 
+  padding: 0 100px; 
+}
+
+/* pads the questions 1-12, so it's not flush against the side */
+.Random {
+  padding-left: 10px;
+}

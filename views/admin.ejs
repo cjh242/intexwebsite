@@ -162,13 +162,12 @@
         <div class="row gy-4 d-flex justify-content-center">
 
           <div class="col-lg-20" data-aos="fade-up" data-aos-delay="250">
-
+            <form action="/search" method="post">
+              <label for="searchText">Search:</label>
+              <input type="text" id="searchText" name="searchText" required>
+              <button type="submit">Search</button>
+          </form>
             <div class="custom-table-container">
-                <form action="/search" method="post">
-                    <label for="searchText">Search:</label>
-                    <input type="text" id="searchText" name="searchText" required>
-                    <button type="submit">Search</button>
-                </form>
             <table class="custom-table">
                 <thead class="custom-header">
                   <tr>

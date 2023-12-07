@@ -91,6 +91,9 @@
         visibility: visible;
         opacity: 1;
       }
+      .custom-table tr:nth-child(even) {
+        background-color: #f9f9f9; /* Set your desired background color */
+      }
 
   </style>
 
@@ -235,7 +238,7 @@
                 <ul>
 <% myrecords.forEach(record => { %>
     <% let corg = ''; %>
-    <% let csocial = ''; %>
+    <% let csocial = []; %>
     <tr>
         <td style="word-wrap: normal"><%= record.EntryID %></td>
         <td style="word-wrap: normal"><%= record.Age %></td>
@@ -246,8 +249,8 @@
             if(socialmedia.EntryID === record.EntryID) {
                 myplatforms.forEach(platform => {
                     if(platform.PlatformID === socialmedia.PlatformID){ %>
-                        <% if(csocial !== platform.Platform) {
-                            csocial = platform.Platform; %>
+                        <% if(!csocial.includes(platform.Platform)) {
+                            csocial.push(platform.Platform); %>
                                 <%= platform.Platform %>
                         <% } %>
                 <% }});}}); %> </td>

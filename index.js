@@ -39,12 +39,12 @@ app.use(methodOverride('_method'));
 app.set('views', path.join(baseDir, 'views'))
 app.use(express.static(path.join(baseDir)));
 
-app.get("/", (req, res) => { 
-    res.render('index.ejs', { isAuthenticated: req.isAuthenticated() });
+app.get("/", async (req, res) => {
+    res.render('index.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
 });
 
 //LOGIN PAGE STUFF
-app.get("/login", (req, res) => { 
+app.get("/login", checkNotAuthenticated, (req, res) => { 
     res.render('login.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
@@ -55,8 +55,8 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     }));
 
 //LOGOUT PAGE STUFF
-app.get("/logout", (req, res) => { 
-    res.render('logout.ejs', { isAuthenticated: req.isAuthenticated() });
+app.get("/logout", async (req, res) => { 
+    res.render('logout.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
 app.post('/logout', (req, res) => {
@@ -69,8 +69,8 @@ app.post('/logout', (req, res) => {
     });
 
 //REGISTER PAGE STUFF
-app.get("/register", checkAuthenticated, (req, res) => { 
-    res.render('register.ejs', { isAuthenticated: req.isAuthenticated() });
+app.get("/register", checkAuthenticated, async (req, res) => { 
+    res.render('register.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
 app.post('/register', async (req, res) => {
@@ -103,8 +103,9 @@ app.post('/register', async (req, res) => {
     }
 });
 //EDIT USER PAGE STUFF
-app.get("/edit", checkAuthenticated, (req, res) => { 
-    res.render('edit.ejs', { user: req.user, isAuthenticated: req.isAuthenticated()});
+app.get("/edit", checkAuthenticated, async (req, res) => {
+    const allusers = await User.findAll();
+    res.render('edit.ejs', { user: req.user, isAuthenticated: req.isAuthenticated(), myusers: allusers});
     });
 
 app.post('/edit', checkAuthenticated, async (req, res) => {
@@ -154,7 +155,8 @@ app.get("/results", checkAuthenticated, async (req, res) => {
         myrecords: records, 
         mysocials: socialmedias, 
         myorganizations: organizations, 
-        myplatforms: platforms });
+        myplatforms: platforms,
+        user: req.user });
     });
 
 // app.get("/response/:EntryID", checkAuthenticated, async (req, res) => {
@@ -184,16 +186,17 @@ app.get("/singleresult:EntryID", checkAuthenticated, async (req, res) => {
         myrecords: records,
         mysocials: socialmedias, 
         myorganizations: organizations, 
-        myplatforms: platforms });
+        myplatforms: platforms,
+        user: req.user });
     });
 
 app.get("/adminedit", isAdmin, async (req, res) => { 
     const allusers = await User.findAll();
-    res.render('adminedit.ejs', { isAuthenticated: req.isAuthenticated(), myusers: allusers });
+    res.render('adminedit.ejs', { isAuthenticated: req.isAuthenticated(), myusers: allusers, user: req.user });
     });
 
-app.get("/dashboard", (req, res) => { 
-    res.render('dashboard.ejs', { isAuthenticated: req.isAuthenticated() });
+app.get("/dashboard", async (req, res) => {
+    res.render('dashboard.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
 app.post("/deleteUser/:id", async (req, res) => {
@@ -217,8 +220,8 @@ app.post("/deleteUser/:id", async (req, res) => {
 });
 
 //SURVEY PAGE STUFF
-app.get("/survey", (req, res) => { 
-    res.render('survey.ejs', { isAuthenticated: req.isAuthenticated() });
+app.get("/survey", async (req, res) => { 
+    res.render('survey.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
 app.post('/survey', async (req, res) => {

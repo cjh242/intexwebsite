@@ -1,3 +1,10 @@
+//GROUP 2-15
+//Conway Hogan
+//Tiffany Hansen
+//Elliot Pi
+//Jaden Gatherum
+
+//Installing all middleware and neccessary packages
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -17,6 +24,7 @@ const sequelize = require('./db');
 var stylesheets = '';
 const baseDir = __dirname;
 
+//initializing passport from passport-config (used for authentication)
 const initializePassport = require('./passport-config');
 const { or } = require('sequelize');
 initializePassport(
@@ -25,8 +33,11 @@ initializePassport(
     id => User.findByPk(id)
 );
 
+//using ejs files for views
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+
+//using session for users as well as flash messages
 app.use(flash());
 app.use(session({
     secret: 'secret',
@@ -36,10 +47,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
+
+//telling where the views are
 app.set('views', path.join(baseDir, 'views'))
+
+//telling where css is
 app.use(express.static(path.join(baseDir)));
 
+//home page get route
 app.get("/", async (req, res) => {
+    //has their authentication status and their user detials passed in
     res.render('index.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
 });
 
@@ -48,6 +65,7 @@ app.get("/login", checkNotAuthenticated, (req, res) => {
     res.render('login.ejs', { isAuthenticated: req.isAuthenticated() });
     });
 
+//handles login form using passport
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
@@ -59,6 +77,7 @@ app.get("/logout", async (req, res) => {
     res.render('logout.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
+//logout form 
 app.post('/logout', (req, res) => {
     req.logout((err) => {
         if (err) {
@@ -73,6 +92,7 @@ app.get("/register", checkAuthenticated, async (req, res) => {
     res.render('register.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
+//handles the register form by creating a new user model when submited 
 app.post('/register', async (req, res) => {
     if(req.body.password === req.body.cpassword) {
         try {
@@ -89,6 +109,8 @@ app.post('/register', async (req, res) => {
         
             console.log('New user created:', newUser);
         
+            //uses appropraite flash messages
+
             req.flash('success', 'User registered successfully!');
             res.redirect('/register');
         } catch (error) {
@@ -102,16 +124,20 @@ app.post('/register', async (req, res) => {
         res.redirect('/register');
     }
 });
+
 //EDIT USER PAGE STUFF
+//edit user page route
 app.get("/edit", checkAuthenticated, async (req, res) => {
     const allusers = await User.findAll();
     res.render('edit.ejs', { user: req.user, isAuthenticated: req.isAuthenticated(), myusers: allusers});
     });
 
+//edit user page form that updates the user record for the current user
 app.post('/edit', checkAuthenticated, async (req, res) => {
     if(req.body.password === req.body.cpassword) {
         try {
             // Update user information in the database
+            //hashes the password before it is stored in the database
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             const [numRowsUpdated, updatedUser] = await User.update(
             {
@@ -123,6 +149,7 @@ app.post('/edit', checkAuthenticated, async (req, res) => {
                 
             },
             {
+                //finds the current user and uses where to compare it to the database only updating that user
                 where: { id: req.user.id },
                 returning: true, // Return the updated user
             }
@@ -140,6 +167,7 @@ app.post('/edit', checkAuthenticated, async (req, res) => {
         }
     }
     else {
+        //displays the error if the passwords dont match
         req.flash('error', 'Passwords do not match. User not edited. Try Again');
         res.redirect('/edit');
     }
@@ -147,10 +175,12 @@ app.post('/edit', checkAuthenticated, async (req, res) => {
 
 //ADMIN PAGE STUFF
 app.get("/results", checkAuthenticated, async (req, res) => { 
+    //gets all associated models
     const records = await PersonalInfo.findAll();
     const socialmedias = await SocialMedia.findAll();
     const organizations = await Organization.findAll();
     const platforms = await Platform.findAll();
+    //passes all of those models into the view
     res.render('admin.ejs', { isAuthenticated: req.isAuthenticated(), 
         myrecords: records, 
         mysocials: socialmedias, 
@@ -159,6 +189,7 @@ app.get("/results", checkAuthenticated, async (req, res) => {
         user: req.user });
     });
 
+//not using rn but would maybe use in a later version
 // app.get("/response/:EntryID", checkAuthenticated, async (req, res) => {
 //     const entryID = req.params.EntryID;
 //     const socialmedias = await SocialMedia.findAll({ where: { EntryID: entryID } });
@@ -170,14 +201,18 @@ app.get("/results", checkAuthenticated, async (req, res) => {
 //         myplatforms: platforms });
 // });
 
+//post route for the little search bar for individual posts that basically just puts it in the url
 app.post('/search', (req, res) => {
     const searchText = req.body.searchText;
     const searchUrl = "/singleresult" + searchText;
     res.redirect(searchUrl);
   });
 
+//dynamic get route for individual posts that uses all the same models
 app.get("/singleresult:EntryID", checkAuthenticated, async (req, res) => {
+    //gets entry id from url
     const entryID = req.params.EntryID;
+    //looks in database by url
     const records = await PersonalInfo.findAll({ where: { EntryID: entryID } });
     const socialmedias = await SocialMedia.findAll({ where: { EntryID: entryID } });
     const organizations = await Organization.findAll();
@@ -190,15 +225,18 @@ app.get("/singleresult:EntryID", checkAuthenticated, async (req, res) => {
         user: req.user });
     });
 
+//get route for the admin edit page
 app.get("/adminedit", isAdmin, async (req, res) => { 
     const allusers = await User.findAll();
     res.render('adminedit.ejs', { isAuthenticated: req.isAuthenticated(), myusers: allusers, user: req.user });
     });
 
+//get route for the dashboard
 app.get("/dashboard", async (req, res) => {
     res.render('dashboard.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
+//route to delete users from the manage users page
 app.post("/deleteUser/:id", async (req, res) => {
     const userId = req.params.id;
 
@@ -224,6 +262,7 @@ app.get("/survey", async (req, res) => {
     res.render('survey.ejs', { isAuthenticated: req.isAuthenticated(), user: req.user });
     });
 
+//route to create new survey entries! 
 app.post('/survey', async (req, res) => {
     try {
         const personalInfo = await PersonalInfo.create({
@@ -231,6 +270,7 @@ app.post('/survey', async (req, res) => {
             Gender: req.body.gender,
             RelationshipStatus: req.body.relationship,
             OccupationStatus: req.body.occupation,
+            //location automatically set to provo
             Location: 'Provo',
             UseSocialMedia: req.body.yesno,
             AvgTimeSpent: req.body.timeDuration,
@@ -246,9 +286,11 @@ app.post('/survey', async (req, res) => {
             InterestDailyActivites: req.body.q11,
             Sleep: req.body.q12,
         });
-        const selectedPlatforms = req.body.socialMedia; // Assuming an array of selected platform IDs
-        const selectedOrganizations = req.body.affiliated; // Assuming an array of selected organization IDs
+        const selectedPlatforms = req.body.socialMedia; // array of selected platform IDs
+        const selectedOrganizations = req.body.affiliated; // array of selected organization IDs
 
+        //loops through creating the appropriate number of socialmedia table entries based on how many
+        //platforms and organizations they selected
         for (const platformId of selectedPlatforms) {
             for (const organizationId of selectedOrganizations) {
                 const socialMedia = await SocialMedia.create({
@@ -271,6 +313,7 @@ app.post('/survey', async (req, res) => {
 });
 
 
+// functions to check authentication using is authenticated from passport
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -293,6 +336,7 @@ function isAdmin(req, res, next) {
     res.redirect('/login'); // Redirect unauthorized users
 }
 
+//listen!
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

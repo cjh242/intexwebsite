@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- =======================================================
+  * Group 15: Jaden Gatherum, Tiffany Hansen, Conway Hogan, Elliot Pi 
+  * Section: 002
+  ======================================================== -->
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -29,16 +34,10 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Nova
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="page-contact">
+  <!-- javascript code for button options -->
   <script>
     function SocialMediaOrNo() 
     {
@@ -87,24 +86,25 @@
       }
     }
   </script>
+
  <!-- ======= Header ======= -->
  <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="d-flex align-items-center">Provo City</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
+      <!-- ===== Navigation Bar ====== -->
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/survey">Survey</a></li>
           <li><a href="/dashboard">Explore Data</a></li>
+          <!-- check to see if user is authenticated -->
           <% if (isAuthenticated) { %>
           <li><a href="/edit">Edit Profile</a></li>
           <li><a href="/register">Register</a></li>
@@ -145,15 +145,16 @@
 
           <div class="col-lg-10" data-aos="fade-up" data-aos-delay="250">
 
+            <!-- Survey Form -->
             <form action="/survey" method="POST" role="form" class="php-email-form" >
               <div class="form-group mt-3" class="jaden-survey">
                 <label for="gender">Gender</label>
                 <br>
+                <!-- gender options -->
                 <select id="gender" name="gender" style="width: 800px" required>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
-                  <!-- Add more options as needed -->
                 </select>
               </div>
               <div class="form-group mt-3" class="jaden-survey">
@@ -171,6 +172,7 @@
               <div class="form-group mt-3" class="jaden-survey">
                 <label for="relationship">Current Relationship Status</label>
                 <br>
+                <!-- relationship type options -->
                 <select id="relationship" name="relationship" style="width: 800px" required>
                   <option value="Single">Single</option>
                   <option value="In a relationship">In a relationship</option>
@@ -182,6 +184,7 @@
               <div class="form-group mt-3" class="jaden-survey">
                 <label for="occupation">Occupation Status</label>
                 <br>
+                <!-- occupation status options -->
                 <select id="occupation" name="occupation" style="width: 800px" required>
                   <option value="University Student">University Student</option>
                   <option value="High School Student">High School Student</option>
@@ -190,6 +193,7 @@
                   <!-- Add more options as needed -->
                 </select>
               </div>
+              <!-- organization question with checkboxes -->
               <div class="form-group mt-3" class="jaden-survey">
                 <label for="socialMedia">What type of organizations are you affiliated with? </label>
                 <br>
@@ -221,6 +225,7 @@
                     <input class="Org" id="OrgNone" type="checkbox" name="affiliated" value="6" onclick="OrganizationNone()"> None
                   </label>
               </div>
+              <!-- use of social media use inputs -->
               <div class="form-group mt-3" class="jaden-survey">
                 <label for="yesno">Do you use social media? </label>
                 <br>  
@@ -232,6 +237,7 @@
                     <input id="yesnoNo" type="radio" name="yesno" value="No" required onclick="SocialMediaOrNo()"> No
                 </label>
               </div> 
+              <!-- platform question with checkboxes -->
               <div class="form-group mt-3" class="jaden-survey">
                 <label for="socialMedia" >What Social Media platforms do you use?</label>
                 <br>
@@ -275,9 +281,8 @@
                     <input class="SM" type="checkbox" name="socialMedia" value="10"> None
                   </label>
               </div>
-
+              <!-- Average Time Response -->
               <div class="form-group mt-3" class="jaden-survey">
-
                 <label for="timeDuration">What is the average time you spend on social media every day?</label>
                 <br>
                 <label>
@@ -304,8 +309,10 @@
                     <input type="radio" name="timeDuration" value="More than 5 hours" required> More than 5 hours
                   </label>
               </div>
+              <!-- table for the radio button responses  -->
               <div class="bottomSurvey" >
                 <table class ="jadenTable">
+                  <!-- header for the table and the statement -->
                 <tr>
                     <th>For the Following Statement, I...</th>
                     <th class = "jadenHeader">Strongly Disagree</th>
@@ -314,12 +321,14 @@
                     <th class = "jadenHeader">Agree</th>
                     <th class = "jadenHeader">Strongly Agree</th>
                 </tr>
+                <!-- statements associated with the survey questions -->
                   <tr class = "even">
                       <td class = "jadenQuestion">
                           <label>
                             I often find myself using social media without a specific purpose
                           </label>
                       </td>
+                      <!-- values associated with each header -->
                       <td class = "jadentd">
                           <input type="radio" name = "q1" value = '1' required>
                       </td>
@@ -580,23 +589,25 @@
                       </td>
                   </tr>
                 </table>
+                <!-- end survey table -->
                 <br>
                 <br>
                 <br>
               </div>
               <div class="text-center"><button type="submit">Submit Response</button></div>
             </form>
+            <!-- ejs with message if it was succeeded or failed -->
             <% if (messages.error) { %>
                 <p style="color: red;"><%= messages.error %></p>
             <% } else if (messages.success) { %>
                 <p style="color: green;"><%= messages.success %></p>
             <% } %>
-          </div><!-- End Contact Form -->
+          </div><!-- End Survey Form -->
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Survey Section -->
 
   </main><!-- End #main -->
 
@@ -615,6 +626,7 @@
               create healthier and happier lives. Through the community's help, we're able 
               to gather more data and provide the best resources for the city of Provo. 
             </p>
+            <!-- social media links -->
             <div class="social-links d-flex  mt-3">
               <a href="https://www.twitter.com/provocity" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="https://www.facebook.com/provocity/" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -624,6 +636,7 @@
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
+            <!-- navigation to other views -->
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bi bi-dash"></i> <a href="/">Home</a></li>

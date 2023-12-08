@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- =======================================================
+  * GROUP 15: Jaden Gatherum, Tiffany Hansen, Conway Hogan, Elliot Pi 
+  * Section: 002
+  ======================================================== -->
+
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -28,7 +34,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-  
+
 </head>
 
 <body class="page-contact">
@@ -46,11 +52,13 @@
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
+      <!-- ===== Navigation Bar ====== -->
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/survey">Survey</a></li>
           <li><a href="/dashboard">Explore Data</a></li>
+          <!-- check to see if user is authenticated to go to these views -->
           <% if (isAuthenticated) { %>
           <li><a href="/edit">Edit Profile</a></li>
           <li><a href="/register">Register</a></li>
@@ -83,7 +91,7 @@
       </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Register Section ======= -->
     <section id="contact" class="contact">
       <div class="container position-relative" data-aos="fade-up">
 
@@ -91,6 +99,7 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
 
+            <!-- register form information -->
             <form action="/register" method="POST" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -112,10 +121,14 @@
                     <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm Password" required>
                 </div>
               </div>
+
               <br>
               <br>
+              <!-- button to submit the register form -->
               <div class="text-center"><button type="submit">Register</button></div>
             </form>
+
+            <!-- message if the user was registered or not -->
             <% if (messages.error) { %>
                 <p style="color: red;"><%= messages.error %></p>
             <% } else if (messages.success) { %>
@@ -126,7 +139,7 @@
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Register Section -->
 
   </main><!-- End #main -->
 
@@ -145,6 +158,7 @@
               create healthier and happier lives. Through the community's help, we're able 
               to gather more data and provide the best resources for the city of Provo. 
             </p>
+            <!-- social media links -->
             <div class="social-links d-flex  mt-3">
               <a href="https://www.twitter.com/provocity" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="https://www.facebook.com/provocity/" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -153,6 +167,7 @@
             </div>
           </div>
 
+          <!-- navigation links to different views -->
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>

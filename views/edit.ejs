@@ -43,19 +43,19 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="d-flex align-items-center">Provo City</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
+      <!-- ===== Navigation Bar -->
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/survey">Survey</a></li>
           <li><a href="/dashboard">Explore Data</a></li>
+          <!-- ejs to see if user is authenticated to see views -->
           <% if (isAuthenticated) { %>
           <li><a href="/edit">Edit Profile</a></li>
           <li><a href="/register">Register</a></li>
@@ -88,7 +88,7 @@
       </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Edit Section ======= -->
     <section id="contact" class="contact">
       <div class="container position-relative" data-aos="fade-up">
 
@@ -96,6 +96,7 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
 
+            <!-- form to edit data in the database -->
             <form action="/edit" method="POST" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -119,20 +120,23 @@
               </div>
               <br>
               <br>
+              <!-- button to submit the form -->
               <div class="text-center"><button type="submit">Save Changes</button></div>
             </form>
+
+            <!-- ejs to tell user if user was correctly updated -->
             <% if (messages.error) { %>
                 <p style="color: red;"><%= messages.error %></p>
             <% } else if (messages.success) { %>
                 <p style="color: green;"><%= messages.success %></p>
             <% } %>
 
-          </div><!-- End Contact Form -->
+          </div><!-- End Edit Form -->
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Edit Section -->
 
   </main><!-- End #main -->
 
@@ -151,6 +155,8 @@
               create healthier and happier lives. Through the community's help, we're able 
               to gather more data and provide the best resources for the city of Provo. 
             </p>
+
+            <!-- links to social media -->
             <div class="social-links d-flex  mt-3">
               <a href="https://www.twitter.com/provocity" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="https://www.facebook.com/provocity/" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -160,6 +166,7 @@
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
+            <!-- navigation to different views -->
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bi bi-dash"></i> <a href="/">Home</a></li>

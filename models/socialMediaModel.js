@@ -1,3 +1,11 @@
+//GROUP 2-15
+//Conway Hogan
+//Tiffany Hansen
+//Elliot Pi
+//Jaden Gatherum
+
+//model for the socialmediamentalhealth table
+
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db.js');
 const PersonalInfo = require('./personalInfoModel.js');

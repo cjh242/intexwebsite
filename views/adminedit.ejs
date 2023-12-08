@@ -108,6 +108,8 @@
                   </tr>
                 </thead>
                 <ul>
+                  <!-- loops through each user and makes sure they arents the admin so
+                  that the admin user cannot be deleted -->
                   <% myusers.forEach(alluser => { %>
                     <% if(alluser.username != 'admin') { %>
                     <tr>

@@ -1,3 +1,11 @@
+//GROUP 2-15
+//Conway Hogan
+//Tiffany Hansen
+//Elliot Pi
+//Jaden Gatherum
+
+//model for the peoples table
+
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db.js');
 const SocialMedia = require('./socialMediaModel.js');
@@ -69,7 +77,5 @@ const PersonalInfo = sequelize.define('peoples', {
         createdAt: 'Timestamp',
         updatedAt: false, // Disable the updatedAt timestamp
   });
-
-//   PersonalInfo.hasMany(SocialMedia, { as: 'socialMedia', foreignKey: 'EntryID' });
 
 module.exports = PersonalInfo;

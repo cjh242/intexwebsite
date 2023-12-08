@@ -175,6 +175,8 @@
                 </thead>
             </div>
                 <ul>
+                  <!-- sorts through each individual record and creates an empty string and array
+                  to eliminate duplicate platforms and organizations sinces surveys can have multiple -->
 <% myrecords.forEach(record => { %>
     <% let corg = ''; %>
     <% let csocial = []; %>
@@ -184,6 +186,8 @@
         <td style="word-wrap: normal"><%= record.Gender %></td>
         <td style="word-wrap: normal"><%= record.RelationshipStatus %></td>
         <td style="word-wrap: normal"><%= record.OccupationStatus %></td>
+        <!-- loops through the social media records and then gets the appropriate platform or
+        organization name from the cooresponding table -->
         <td><% mysocials.forEach(socialmedia => {
             if(socialmedia.EntryID === record.EntryID) {
                 myplatforms.forEach(platform => {
@@ -202,6 +206,7 @@
                         <%= organization.Organization %>
                 <% }}}) %>
             <% }}); %></td>
+            <!-- displays the rest of the data from the personalinfo model -->
         <td style="word-wrap: normal"><%= record.OftenSpent %></td>
         <td style="word-wrap: normal"><%= record.Restless %></td>
         <td style="word-wrap: normal"><%= record.Distracted %></td>

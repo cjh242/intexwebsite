@@ -1,3 +1,11 @@
+//GROUP 2-15
+//Conway Hogan
+//Tiffany Hansen
+//Elliot Pi
+//Jaden Gatherum
+
+//users model
+
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db.js');
 

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- =======================================================
+  * GROUP 15: Jaden Gatherum, Tiffany Hansen, Conway Hogan, Elliot Pi 
+  * Section: 002
+  ======================================================== -->
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -28,14 +33,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Nova
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="page-contact">
@@ -53,11 +50,13 @@
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
+      <!-- ======= Navigation Bar ======= -->
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/survey">Survey</a></li>
           <li><a href="/dashboard">Explore Data</a></li>
+          <!-- ejs to see if user is authenticated -->
           <% if (isAuthenticated) { %>
           <li><a href="/edit">Edit Profile</a></li>
           <li><a href="/register">Register</a></li>
@@ -90,7 +89,7 @@
       </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Log Out Section ======= -->
     <section id="contact" class="contact">
       <div class="container position-relative" data-aos="fade-up">
 
@@ -98,16 +97,17 @@
 
           <div class="unique-centering-container" data-aos="fade-up" data-aos-delay="250">
 
+            <!-- for to log out of current user -->
             <form action="/logout" method="POST" class="php-email-form">
                 <button type="submit">Logout</button>
             </form>
 
-          </div><!-- End Contact Form -->
+          </div><!-- End Log Out Form -->
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Log Out Section -->
 
   </main><!-- End #main -->
 
@@ -126,6 +126,8 @@
               create healthier and happier lives. Through the community's help, we're able 
               to gather more data and provide the best resources for the city of Provo. 
             </p>
+
+            <!-- link to socials -->
             <div class="social-links d-flex  mt-3">
               <a href="https://www.twitter.com/provocity" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="https://www.facebook.com/provocity/" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -134,6 +136,7 @@
             </div>
           </div>
 
+          <!-- navigation to other views -->
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>

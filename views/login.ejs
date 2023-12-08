@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- =======================================================
+  * GROUP 15: Jaden Gatherum, Tiffany Hansen, Conway Hogan, Elliot Pi 
+  * Section: 002
+  ======================================================== -->
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -29,13 +34,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Nova
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="page-contact">
@@ -45,19 +43,19 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="d-flex align-items-center">Provo City</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
+      <!-- ===== Navigation Bar ===== -->
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/survey">Survey</a></li>
           <li><a href="/dashboard">Explore Data</a></li>
+          <!-- authentication for user -->
           <% if (isAuthenticated) { %>
           <li><a href="/edit">Edit Profile</a></li>
           <li><a href="/register">Register</a></li>
@@ -87,7 +85,7 @@
       </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Log In Section ======= -->
     <section id="contact" class="contact">
       <div class="container position-relative" data-aos="fade-up">
 
@@ -95,6 +93,7 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
 
+            <!-- form for people to log in to the website -->
             <form action="/login" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="form-group mt-3">
@@ -106,17 +105,18 @@
               </div>
               <div class="text-center"><button type="submit">Log In</button></div>
             </form>
+            <!-- ejs messages for successful or failed login -->
             <% if (messages.error) { %>
                 <p style="color: red;"><%= messages.error %></p>
             <% } else if (messages.success) { %>
                 <p style="color: green;"><%= messages.success %></p>
             <% } %>
-          </div><!-- End Contact Form -->
+          </div><!-- End Log In Form -->
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Log In Section -->
 
   </main><!-- End #main -->
 
@@ -135,6 +135,8 @@
               create healthier and happier lives. Through the community's help, we're able 
               to gather more data and provide the best resources for the city of Provo. 
             </p>
+
+            <!-- links to social media -->
             <div class="social-links d-flex  mt-3">
               <a href="https://www.twitter.com/provocity" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="https://www.facebook.com/provocity/" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -143,6 +145,7 @@
             </div>
           </div>
 
+          <!-- navigation to different views -->
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>

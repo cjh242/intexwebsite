@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- =======================================================
+  * Group 15: Jaden Gatherum, Tiffany Hansen, Conway Hogan, Elliot Pi 
+  * Section: 002
+  ======================================================== -->
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -29,13 +34,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Nova
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="page-contact">
@@ -45,19 +43,20 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="d-flex align-items-center">Provo City</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
+      <!-- ==== Navigation Bar ===== -->
       <nav id="navbar" class="navbar">
+        <!-- navigation to different view with ejs -->
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/survey">Survey</a></li>
           <li><a href="/dashboard">Explore Data</a></li>
+          <!-- checks to see if user is authenticated -->
           <% if (isAuthenticated) { %>
           <li><a href="/edit">Edit Profile</a></li>
           <li><a href="/register">Register</a></li>
@@ -90,20 +89,21 @@
       </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Tableau Section ======= -->
     <section id="contact" class="contact">
       <div class="container position-relative" data-aos="fade-up">
-
+        <!-- Embedded Tableau -->
         <div class="row gy-4 d-flex justify-content-center">
             <div class='tableauPlaceholder' id='viz1701923103756' style='position: relative'><noscript><a href='#'><img alt='Community Social Media &amp; Mental Health Data ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;FI&#47;FINAL-Dashboard&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='FINAL-Dashboard&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;FI&#47;FINAL-Dashboard&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                
             <script type='text/javascript'>                    
             var divElement = document.getElementById('viz1701923103756');                    
-            var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1477px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+            var vizElement = divElement.getElementsByTagName('object')[0];                    
+            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1477px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
             vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Tableau Section -->
 
   </main><!-- End #main -->
 
@@ -122,6 +122,7 @@
               create healthier and happier lives. Through the community's help, we're able 
               to gather more data and provide the best resources for the city of Provo. 
             </p>
+            <!-- social media links -->
             <div class="social-links d-flex  mt-3">
               <a href="https://www.twitter.com/provocity" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="https://www.facebook.com/provocity/" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -130,6 +131,7 @@
             </div>
           </div>
 
+          <!-- navigation to views -->
           <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>

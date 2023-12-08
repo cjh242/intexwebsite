@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- =======================================================
+  * GROUP 15: Jaden Gatherum, Tiffany Hansen, Conway Hogan, Elliot Pi 
+  * Section: 002
+  ======================================================== -->
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -29,13 +34,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Nova
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/nova-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="page-index">
@@ -45,19 +43,19 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="d-flex align-items-center">Provo City</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
+      <!-- ==== Navigation Bar to different Views ==== -->
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/survey">Survey</a></li>
           <li><a href="/dashboard">Explore Data</a></li>
+          <!-- check to see if user is authenticated -->
           <% if (isAuthenticated) { %>
           <li><a href="/edit">Edit Profile</a></li>
           <li><a href="/register">Register</a></li>
